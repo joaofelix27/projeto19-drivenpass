@@ -6,7 +6,7 @@ import * as authService  from '../services/authService';
 export async function register(req:Request,res:Response) {
     const registerData: registerType = req.body
     const {email,password}=registerData
-    const result:any = await authService.register()
+    const result = await authService.register({email,password})
     
     if (result) {
     return res.sendStatus(201)
