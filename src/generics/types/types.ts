@@ -2,6 +2,6 @@ import { users } from "@prisma/client"
 
 export type IUsersData = Omit<users, 'id'>;
 
-export type registerServiceType =(
-   registerData:IUsersData 
+export type authServiceType =(
+   authData:IUsersData 
 ) => Promise<any>

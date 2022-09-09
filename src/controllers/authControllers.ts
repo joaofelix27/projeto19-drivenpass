@@ -1,10 +1,10 @@
 import { Response,Request } from "express";
-import { registerType } from "../generics/interfaces/interface";
+import { IUsersData } from "../generics/types/types";
 import * as authService  from '../services/authService';
 
 
 export async function register(req:Request,res:Response) {
-    const registerData: registerType = req.body
+    const registerData: IUsersData = req.body
     const {email,password}=registerData
     const result = await authService.register({email,password})
     
@@ -12,6 +12,18 @@ export async function register(req:Request,res:Response) {
     return res.sendStatus(201)
     } else {
         throw {type:"error", message:"It was not possible to register"}
+    }
+
+}
+export async function login(req:Request,res:Response) {
+    const loginData: IUsersData = req.body
+    const {email,password}=loginData
+    const result:string = await authService.login({email,password})
+    
+    if (result) {
+    return res.status(200).send(result)
+    } else {
+        throw {type:"error", message:"It was not possible to login"}
     }
 
 }
