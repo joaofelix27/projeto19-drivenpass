@@ -23,3 +23,15 @@ export const getCredential:controllersType= async (req,res) => {
         throw {type:"error", message:"Could not get credential"}
     }
 }
+
+export const deleteCredential:controllersType= async (req,res) => {
+    const {id:credentialId} = req.query
+    const userId = res.locals.userId
+    const result = await credentialService.deleteCredential(Number(credentialId),userId)
+    
+    if (result) {
+    return res.status(200).send("Credential deleted!")
+    } else {
+        throw {type:"error", message:"Could not delete credential"}
+    }
+}

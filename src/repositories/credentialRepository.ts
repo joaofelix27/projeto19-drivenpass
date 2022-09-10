@@ -30,3 +30,12 @@ export async function findMany (userId:number){
 export async function createCredential (credential:ICredentialData,userId:number){
     return await connection.credentials.create ({ data: {...credential,userId} });
 }
+
+export async function deleteCredential (id:number,userId:number){
+  return await connection.credentials.deleteMany ({
+    where: {
+    id:id,
+    userId:userId
+  }
+})
+}

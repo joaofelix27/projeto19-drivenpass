@@ -10,7 +10,6 @@ const cryptr = new Cryptr('myTotallySecretKey');
 export const createCredential: createCredentialType= async (credentialData,userId) => {
   const {name,title,password,url}=credentialData
   const alreadyExists=await credentialRepository.findUniqueByTitle(title,userId);
-  console.log(alreadyExists)
   if(alreadyExists.length>0){
     throw {type:"conflict", message:"Credential title already in use!"}
   }
@@ -32,4 +31,11 @@ export const getCredential: getCredentialType= async (credentialId,userId) => {
   })
 
   return newCredentials
+}
+
+export const deleteCredential: getCredentialType= async (credentialId,userId) => {
+  const deletedCredential = await credentialRepository.deleteCredential(credentialId,userId)
+  const deletedCredentialCount=deletedCredential.count
+  if (!deletedCredentialCount) throw {type:"unauthorized", message:"Cannot delete this credential!"}
+  return deletedCredentialCount
 }
