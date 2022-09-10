@@ -1,9 +1,8 @@
-import { Response,Request } from "express";
-import { IUsersData } from "../generics/types/types";
+import { controllersType, IUsersData } from "../generics/types/types";
 import * as authService  from '../services/authService';
 
 
-export async function register(req:Request,res:Response) {
+export const register:controllersType = async (req,res) => {
     const registerData: IUsersData = req.body
     const {email,password}=registerData
     const result = await authService.register({email,password})
@@ -15,11 +14,11 @@ export async function register(req:Request,res:Response) {
     }
 
 }
-export async function login(req:Request,res:Response) {
+export const login:controllersType = async(req,res) => {
     const loginData: IUsersData = req.body
     const {email,password}=loginData
     const result:string = await authService.login({email,password})
-    
+
     if (result) {
     return res.status(200).send(result)
     } else {

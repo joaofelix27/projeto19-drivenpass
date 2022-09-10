@@ -26,8 +26,9 @@ export const login: authServiceType= async ({email, password}) => {
   if (!verifyPassword) throw {type:"unauthorized", message:"It was not possible to login"}
   const returnToken: Partial<users>= {... emailExists}
   delete returnToken?.password;
-  const token:any = jwt.sign(returnToken, "opa", {
-    expiresIn: 1200 
+  const secret:string=(process.env.SECRET)?.toString() || "Secret" ;
+  const token= jwt.sign(returnToken, secret, {
+    expiresIn: 30000 
   });
   return token
 };
