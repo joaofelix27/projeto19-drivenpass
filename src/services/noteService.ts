@@ -1,9 +1,5 @@
 import * as noteRepository from '../repositories/noteRepository'
-import Cryptr from 'cryptr';
 import { createNoteType, getNoteType } from '../generics/types/types';
-import dotenv from 'dotenv'
-dotenv.config()
-const cryptr = new Cryptr('myTotallySecretKey');
 
 
 

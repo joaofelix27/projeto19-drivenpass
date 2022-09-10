@@ -1,10 +1,11 @@
-import { users,credentials,notes} from "@prisma/client"
+import { users,credentials,notes,wifis} from "@prisma/client"
 import { Request,Response } from "express";
 
 
 export type IUsersData = Omit<users, 'id'>;
 export type ICredentialData= Omit <credentials,'id'|'userId'>
 export type INoteData= Omit <notes,'id'|'userId'>
+export type IWifiData= Omit <wifis,'id'|'userId'>
 
 export type authServiceType =(
    authData:IUsersData 
@@ -20,6 +21,11 @@ export type createNoteType =(
    userId:number
 ) => Promise<any>
 
+export type createWifiType =(
+   note:IWifiData,
+   userId:number
+) => Promise<any>
+
 export type getCredentialType =(
    credentialId:number,
    userId:number
@@ -29,6 +35,12 @@ export type getNoteType =(
    noteId:number,
    userId:number
 ) => Promise<any>
+
+export type getWifiType =(
+   wifiId:number,
+   userId:number
+) => Promise<any>
+
 
 export type controllersType =(
   req:Request,

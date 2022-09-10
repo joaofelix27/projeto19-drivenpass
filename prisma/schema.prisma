@@ -13,6 +13,7 @@ model users {
   password    String
   credentials credentials[]
   notes       notes[]
+  wifis       wifis[]
 }
 
 model credentials {
@@ -31,4 +32,13 @@ model notes {
   title  String
   text   String
   users  users  @relation(fields: [userId], references: [id])
+}
+
+model wifis {
+  id       Int    @id @default(autoincrement())
+  userId   Int
+  name     String
+  password String
+  title    String
+  users    users  @relation(fields: [userId], references: [id])
 }
