@@ -24,14 +24,13 @@ export const getNote:controllersType= async (req,res) => {
     }
 }
 
-// export const deleteNote:controllersType= async (req,res) => {
-//     const {id:NoteId} = req.query
-//     const userId = res.locals.userId
-//     const result = await noteService.deleteNote(Number(NoteId),userId)
-    
-//     if (result) {
-//     return res.status(200).send("Note deleted!")
-//     } else {
-//         throw {type:"error", message:"Could not delete Note"}
-//     }
-// }
+export const deleteNote:controllersType= async (req,res) => {
+    const {id:noteId} = req.query
+    const userId = res.locals.userId
+    const result = await noteService.deleteNote(Number(noteId),userId)
+    if (result) {
+    return res.status(200).send("Note deleted!")
+    } else {
+        throw {type:"error", message:"Could not delete Note"}
+    }
+}

@@ -31,8 +31,8 @@ export async function createNote (note:INoteData,userId:number){
     return await connection.notes.create ({ data: {...note,userId} });
 }
 
-export async function deleteCredential (id:number,userId:number){
-  return await connection.credentials.deleteMany ({
+export async function deleteNote (id:number,userId:number){
+  return await connection.notes.deleteMany ({
     where: {
     id:id,
     userId:userId

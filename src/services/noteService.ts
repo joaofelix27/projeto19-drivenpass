@@ -29,9 +29,9 @@ export const getNote: getNoteType= async (noteId,userId) => {
 }
 
 
-// export const deleteNote: getNoteType= async (NoteId,userId) => {
-//   const deletedNote = await NoteRepository.deleteNote(NoteId,userId)
-//   const deletedNoteCount=deletedNote.count
-//   if (!deletedNoteCount) throw {type:"unauthorized", message:"Cannot delete this Note!"}
-//   return deletedNoteCount
-// }
+export const deleteNote: getNoteType= async (noteId,userId) => {
+  const deletedNote = await noteRepository.deleteNote(noteId,userId)
+  const deletedNoteCount=deletedNote.count
+  if (!deletedNoteCount) throw {type:"unauthorized", message:"Cannot delete this Note!"}
+  return deletedNoteCount
+}
