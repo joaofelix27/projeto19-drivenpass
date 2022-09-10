@@ -9,6 +9,17 @@ export const createCredential:controllersType= async (req,res) => {
     if (result) {
     return res.sendStatus(201)
     } else {
-        throw {type:"error", message:"It was not create credential"}
+        throw {type:"error", message:"Could not create credential"}
+    }
+}
+export const getCredential:controllersType= async (req,res) => {
+    const {id:credentialId} = req.query
+    const userId = res.locals.userId
+    const result = await credentialService.getCredential(Number(credentialId),userId)
+    
+    if (result) {
+    return res.status(200).send(result)
+    } else {
+        throw {type:"error", message:"Could not get credential"}
     }
 }
