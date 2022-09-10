@@ -1,5 +1,5 @@
 import joi from "joi";
 
-export const getCredentialSchema =joi.object ({
+export const getSchema =joi.object ({
    id:joi.number().integer().greater(0)
 })
