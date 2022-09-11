@@ -1,5 +1,5 @@
 import joi from "joi";
-import { IUsersData } from "../generics/types/types";
+import { IUsersData } from "../types/auth/authTypes";
 
 export  const authSchema = joi.object<IUsersData>({
   email: joi.string().email().required(),

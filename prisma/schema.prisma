@@ -14,6 +14,7 @@ model users {
   credentials credentials[]
   notes       notes[]
   wifis       wifis[]
+  cards       cards[]
 }
 
 model credentials {
@@ -24,6 +25,8 @@ model credentials {
   title    String
   url      String
   users    users  @relation(fields: [userId], references: [id])
+
+  @@unique([title, userId])
 }
 
 model notes {
@@ -32,6 +35,8 @@ model notes {
   title  String
   text   String
   users  users  @relation(fields: [userId], references: [id])
+
+  @@unique([title, userId])
 }
 
 model wifis {
@@ -41,4 +46,26 @@ model wifis {
   password String
   title    String
   users    users  @relation(fields: [userId], references: [id])
+}
+
+model cards {
+  id             Int      @id @default(autoincrement())
+  userId         Int
+  title          String
+  number         String
+  name           String
+  password       String
+  securityCode   String
+  expirationDate String
+  isVirtual      Boolean  @default(false)
+  type           cardType
+  users          users    @relation(fields: [userId], references: [id])
+
+  @@unique([title, userId])
+}
+
+enum cardType {
+  Credit
+  Debit
+  Both
 }

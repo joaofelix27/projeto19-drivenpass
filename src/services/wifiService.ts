@@ -1,16 +1,16 @@
 import * as wifiRepository from '../repositories/wifiRepository'
 import Cryptr from 'cryptr';
-import { createWifiType, getNoteType, getWifiType } from '../generics/types/types';
 import dotenv from 'dotenv'
+import { createWifiType, getWifiType } from '../types/wifis/wifisTypes';
 dotenv.config()
 const cryptr = new Cryptr('myTotallySecretKey');
 
 
 
-export const createWifi: createWifiType= async (noteData,userId) => {
-  const {password}=noteData
+export const createWifi: createWifiType= async (wifiData,userId) => {
+  const {password}=wifiData
   const encryptedPassword=cryptr.encrypt(password)
-  return await wifiRepository.createWifi({...noteData, password:encryptedPassword},userId)
+  return await wifiRepository.createWifi({...wifiData, password:encryptedPassword},userId)
 };
 
 export const getWifi: getWifiType= async (wifiId,userId) => {
@@ -25,8 +25,8 @@ export const getWifi: getWifiType= async (wifiId,userId) => {
 }
 
 
-export const deleteWifi: getNoteType= async (noteId,userId) => {
-  const deletedWifi = await wifiRepository.deleteWifi(noteId,userId)
+export const deleteWifi: getWifiType= async (wifiId,userId) => {
+  const deletedWifi = await wifiRepository.deleteWifi(wifiId,userId)
   const deletedWifiCount=deletedWifi.count
   if (!deletedWifiCount) throw {type:"unauthorized", message:"Cannot delete this Wi-fi!"}
   return deletedWifiCount

@@ -1,5 +1,5 @@
 import * as noteRepository from '../repositories/noteRepository'
-import { createNoteType, getNoteType } from '../generics/types/types';
+import { createNoteType, getNoteType } from '../types/notes/noteTypes';
 
 
 

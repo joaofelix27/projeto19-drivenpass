@@ -1,5 +1,6 @@
-import { controllersType,IWifiData } from '../generics/types/types'
 import * as wifiService  from '../services/wifiService'
+import { controllersType } from '../types/auth/authTypes'
+import { IWifiData } from '../types/wifis/wifisTypes'
 
 export const createWifi:controllersType= async (req,res) => {
     const wifiData: IWifiData = req.body

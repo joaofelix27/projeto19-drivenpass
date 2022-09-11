@@ -1,7 +1,7 @@
 import * as credentialRepository from '../repositories/credentialRepository'
 import Cryptr from 'cryptr';
-import { createCredentialType, getCredentialType } from '../generics/types/types';
 import dotenv from 'dotenv'
+import { createCredentialType, getCredentialType } from '../types/credentials/credentialTypes';
 dotenv.config()
 const cryptr = new Cryptr('myTotallySecretKey');
 

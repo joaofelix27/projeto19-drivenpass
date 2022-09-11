@@ -1,5 +1,5 @@
-import { controllersType, IUsersData } from "../generics/types/types";
 import * as authService  from '../services/authService';
+import { controllersType, IUsersData } from '../types/auth/authTypes';
 
 
 export const register:controllersType = async (req,res) => {

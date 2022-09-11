@@ -1,9 +1,9 @@
 import * as authRepository from '../repositories/authRepository'
 import bcrypt from 'bcrypt'
-import { authServiceType } from '../generics/types/types';
 import jwt from "jsonwebtoken";
 import dotenv from 'dotenv'
 import { users } from "@prisma/client"
+import { authServiceType } from '../types/auth/authTypes';
 dotenv.config()
 
 

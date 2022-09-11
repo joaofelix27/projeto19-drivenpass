@@ -1,5 +1,6 @@
-import { controllersType, ICredentialData } from '../generics/types/types'
 import * as credentialService  from '../services/credentialService'
+import { controllersType } from '../types/auth/authTypes'
+import { ICredentialData } from '../types/credentials/credentialTypes'
 
 export const createCredential:controllersType= async (req,res) => {
     const credentialData: ICredentialData = req.body

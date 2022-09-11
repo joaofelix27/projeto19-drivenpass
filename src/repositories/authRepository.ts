@@ -1,5 +1,5 @@
 import connection from "../db/db";
-import { IUsersData } from "../generics/types/types";
+import { IUsersData } from "../types/auth/authTypes";
 
 export async function findUnique (email:string){
     return await connection.users.findUnique({

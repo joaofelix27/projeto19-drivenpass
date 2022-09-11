@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createNote, deleteNote, getNote } from "../controllers/noteControllers";
+import * as noteControllers from "../controllers/noteControllers";
 import { validateQuerySchema } from "../middlewares/genericQuerySchemaMiddleware";
 import { validateSchema } from "../middlewares/genericSchemaMiddleware";
 import validateUser from "../middlewares/validateUserMiddleware";
@@ -9,9 +9,9 @@ import { getSchema} from "../schemas/getSchemas/getSchema";
 
 const noteRouter=Router();
 
-noteRouter.post("/notes",validateSchema(createNoteSchema),validateUser,createNote);
-noteRouter.get("/notes",validateQuerySchema(getSchema),validateUser,getNote);
-noteRouter.delete("/notes",validateQuerySchema(deleteSchema),validateUser,deleteNote);
+noteRouter.post("/notes",validateSchema(createNoteSchema),validateUser,noteControllers.createNote);
+noteRouter.get("/notes",validateQuerySchema(getSchema),validateUser,noteControllers.getNote);
+noteRouter.delete("/notes",validateQuerySchema(deleteSchema),validateUser,noteControllers.deleteNote);
 
 
 export default noteRouter;

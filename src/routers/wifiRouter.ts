@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createWifi, deleteWifi, getWifi } from "../controllers/wifiControllers";
+import * as wifiControllers from "../controllers/wifiControllers";
 import { validateQuerySchema } from "../middlewares/genericQuerySchemaMiddleware";
 import { validateSchema } from "../middlewares/genericSchemaMiddleware";
 import validateUser from "../middlewares/validateUserMiddleware";
@@ -9,9 +9,9 @@ import { getSchema} from "../schemas/getSchemas/getSchema";
 
 const wifiRouter=Router();
 
-wifiRouter.post("/wifis",validateSchema(createWifiSchema),validateUser,createWifi);
-wifiRouter.get("/wifis",validateQuerySchema(getSchema),validateUser,getWifi);
-wifiRouter.delete("/wifis",validateQuerySchema(deleteSchema),validateUser,deleteWifi);
+wifiRouter.post("/wifis",validateSchema(createWifiSchema),validateUser,wifiControllers.createWifi);
+wifiRouter.get("/wifis",validateQuerySchema(getSchema),validateUser,wifiControllers.getWifi);
+wifiRouter.delete("/wifis",validateQuerySchema(deleteSchema),validateUser,wifiControllers.deleteWifi);
 
 
 export default wifiRouter;

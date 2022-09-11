@@ -1,5 +1,5 @@
 import connection from "../db/db";
-import { ICredentialData, INoteData,  } from "../generics/types/types";
+import { INoteData } from "../types/notes/noteTypes";
 
 export async function findUniqueByTitle (title:string,userId:number){
     return await connection.notes.findMany({

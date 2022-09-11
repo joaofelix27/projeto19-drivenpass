@@ -1,5 +1,6 @@
-import { controllersType,INoteData } from '../generics/types/types'
 import * as noteService  from '../services/noteService'
+import { controllersType } from '../types/auth/authTypes'
+import { INoteData } from '../types/notes/noteTypes'
 
 export const createNote:controllersType= async (req,res) => {
     const noteData: INoteData = req.body

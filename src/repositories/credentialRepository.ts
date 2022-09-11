@@ -1,5 +1,5 @@
 import connection from "../db/db";
-import { ICredentialData,  } from "../generics/types/types";
+import { ICredentialData } from "../types/credentials/credentialTypes";
 
 export async function findUniqueByTitle (title:string,userId:number){
     return await connection.credentials.findMany({
