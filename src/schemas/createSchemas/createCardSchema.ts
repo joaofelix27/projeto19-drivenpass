@@ -1,6 +1,6 @@
 import joi from "joi"
 
-export const createCardSchema =joi.object().keys ({
+export const createCardSchema =joi.object ({
     number:joi.string().length(16).required(),
     name:joi.string().required(),
     securityCode:joi.string().length(3).required(),
