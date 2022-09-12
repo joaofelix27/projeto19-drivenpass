@@ -276,7 +276,7 @@ DrivenPass is an API that keep records of users.
 | `title`           | `string`  | **Required**. record title            |
 | `text       `     | `string`  | **Required**.  note text              |
 
-`title max-length: 50`
+`title max-length: 50` <br/>
 `text max-length: 1000`
 
 #### Response:
@@ -449,9 +449,9 @@ DrivenPass is an API that keep records of users.
 | `issuingOrganization`| `string`  | **Required**. document issue organization   |
 | `type`               | `string`  | **Required**. document type                 |
 
-`expirationDate length: 10 format(DD/MM/YYYY)`
-`issueDate length: 10 format(DD/MM/YYYY)`
-`Valid types: [RG and CNH ]`
+`expirationDate length: 10 format(DD/MM/YYYY)` <br/>
+`issueDate length: 10 format(DD/MM/YYYY)` <br/>
+`Valid types: [RG and CNH ]` <br/>
 
 ####
 
@@ -525,9 +525,9 @@ This enviroment variables are required to run this project:
 
 `DATABASE_URL = postgres://UserName:Password@Hostname:5432/DatabaseName`
 
-`PORT = number #recommended:5000`
+`PORT = number #recommended:4000
 
-`JWT_SECRET= string ` 
+`SECRET= string ` 
 
 
 ## Lessons Learned
