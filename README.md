@@ -31,10 +31,10 @@ DrivenPass is an API that keep records of users.
 ## Features
 
 -   User register and login
--   Create Credentials / Cards / Notes / Wifis records.
--   View Credentials / Cards / Notes / Wifis records.
--   View specific Credential / Card / Note / Wifi record.
--   Delete specific Credential / Card / Safenote / Wifi record.
+-   Create Credentials / Cards / Notes / Wifis/ Documents records.
+-   View Credentials / Cards / Notes / Wifis / Documents records.
+-   View specific Credential / Card / Note / Wifi / Documents record.
+-   Delete specific Credential / Card / Safenote / Wifi / Documents record.
 
 </br>
 
@@ -101,7 +101,7 @@ DrivenPass is an API that keep records of users.
 
 #
 
-### Search credentials / Search credentials by id
+### Search credentials / Search credential by id
 
 ```GET /credentials``` or ```GET /credentials?id```
 
@@ -110,6 +110,8 @@ DrivenPass is an API that keep records of users.
 | Headers          | Type    | Description                        |
 | :--------------- | :-------| :--------------------------------- |
 | `Authorization`  | `string`| **Required**. Bearer Authorization |
+
+####
 
 | Query   | Type     | Description                 |
 | :------ | :------- | :-------------------------- |
@@ -134,19 +136,20 @@ DrivenPass is an API that keep records of users.
 
 ### Delete credential by id
 
-```DELETE /credentials?id=```
+```DELETE /credentials?id```
 
 #### Request:
+
+| Headers          | Type    | Description                        |
+| :--------------- | :-------| :--------------------------------- |
+| `Authorization`  | `string`| **Required**. Bearer Authorization | 
+
+####
 
 | Query   | Type     | Description                 |
 | :------ | :------- | :-------------------------- |
 | `id`    | `integer`| **Required**. credential id |
 
-####
-
-| Headers          | Type    | Description                        |
-| :--------------- | :-------| :--------------------------------- |
-| `Authorization`  | `string`| **Required**. Bearer Authorization | 
 
 #### Response:
 
@@ -180,11 +183,14 @@ DrivenPass is an API that keep records of users.
 | `title`           | `string`  | **Required**. record title        |
 | `type`            | `string`  | **Required**. card type           |
 
-`Number length: 16`
-`securityCode length: 3`
-`expirationDate length: 5 format(MM/YY)`
-`Valid types: [debit,credit,credit and debit]`
-`Can't create cards with same title`
+`Number length: 16` <br/>
+`securityCode length: 3` <br/>
+`expirationDate length: 5 format(MM/YY)` <br/>
+`Valid types: [debit,credit,credit and debit]` <br/>
+
+#### Response:
+
+`Card title already in use!`
 
 ####
 
@@ -192,7 +198,7 @@ DrivenPass is an API that keep records of users.
 
 #
 
-### Search cards / Search cards by id
+### Search cards / Search card by id
 
 ```GET /cards``` or ```GET /cards?id```
 
@@ -200,7 +206,9 @@ DrivenPass is an API that keep records of users.
 
 | Headers          | Type    | Description                        |
 | :--------------- | :-------| :--------------------------------- |
-| `Authorization`  | `string`| **Required**. Bearer Authorization | 
+| `Authorization`  | `string`| **Required**. Bearer Authorization |
+
+####
 
 | Query   | Type     | Description                 |
 | :------ | :------- | :-------------------------- |
@@ -225,37 +233,22 @@ DrivenPass is an API that keep records of users.
 ```
 #
 
-#### Response:
-
-```json
-  {
-    "number": "...",
-    "name": "...",
-    "securityCode": "...",
-    "expirationDate": "...",
-    "isVirtual": true,
-    "password": "...",
-    "title": "...",
-    "type":"..."
-  }
-```
-#
-
 ### Delete card by id
 
-```DELETE cards?id```
+```DELETE /cards?id```
 
 #### Request:
+
+| Headers          | Type    | Description                        |
+| :--------------- | :-------| :--------------------------------- |
+| `Authorization`  | `string`| **Required**. Bearer Authorization |
+
+####
 
 | Query   | Type     | Description                 |
 | :------ | :------- | :-------------------------- |
 | `id`    | `integer`| **Required**. credential id |
 
-####
-
-| Headers          | Type    | Description                        |
-| :--------------- | :-------| :--------------------------------- |
-| `Authorization`  | `string`| **Required**. Bearer Authorization |  |
 
 #### Response:
 
@@ -285,22 +278,18 @@ DrivenPass is an API that keep records of users.
 
 `title max-length: 50`
 `text max-length: 1000`
+
+#### Response:
+
 `Note title already in use!`
 
 ####
 
 </br>
 
-#### Response:
-
-```json
-{
-  "message": "created!"
-}
-```
 #
 
-### Search notes / Search notes by id
+### Search notes / Search note by id
 
 ```GET /notes``` or ```GET /notes?id```
 
@@ -309,6 +298,8 @@ DrivenPass is an API that keep records of users.
 | Headers          | Type    | Description                        |
 | :--------------- | :-------| :--------------------------------- |
 | `Authorization`  | `string`| **Required**. Bearer Authorization | 
+
+####
 
 | Query   | Type     | Description                 |
 | :------ | :------- | :-------------------------- |
@@ -320,7 +311,7 @@ DrivenPass is an API that keep records of users.
 [
   {
     "title": "...",
-    "description": "..."
+    "text": "..."
    },
   ...
 ]
@@ -329,19 +320,19 @@ DrivenPass is an API that keep records of users.
 
 ### Delete note by id
 
-```DELETE notes?id```
+```DELETE /notes?id```
 
 #### Request:
-
-| Query   | Type     | Description                 |
-| :------ | :------- | :-------------------------- |
-| `id`    | `integer`| **Required**. note id       |
-
-####
 
 | Headers          | Type    | Description                        |
 | :--------------- | :-------| :--------------------------------- |
 | `Authorization`  | `string`| **Required**. Bearer Authorization | 
+
+####
+
+| Query   | Type     | Description                 |
+| :------ | :------- | :-------------------------- |
+| `id`    | `integer`| **Required**. note id       |
 
 #### Response:
 
@@ -376,16 +367,9 @@ DrivenPass is an API that keep records of users.
 
 </br>
 
-#### Response:
-
-```json
-{
-  "message": "created!"
-}
-```
 #
 
-### Search wifi networks / Search wifi networks by id
+### Search wifi networks / Search wifi network by id
 
 ```GET /wifis``` or ```GET /wifis?id```
 
@@ -393,11 +377,13 @@ DrivenPass is an API that keep records of users.
 
 | Headers          | Type    | Description                        |
 | :--------------- | :-------| :--------------------------------- |
-| `Authorization`  | `string`| **Required**. Bearer Authorization | 
+| `Authorization`  | `string`| **Required**. Bearer Authorization |
+
+####
 
 | Query   | Type     | Description                 |
 | :------ | :------- | :-------------------------- |
-| `id`    | `integer`| **Required**. credential id |
+| `id`    | `integer`| **Optional**. wifi id       |
 
 #### Response:
 
@@ -415,19 +401,20 @@ DrivenPass is an API that keep records of users.
 
 ### Delete wifi record by id
 
-```DELETE wifis/delete/:id```
+```DELETE /wifis?id```
 
 #### Request:
+
+| Headers          | Type    | Description                        |
+| :--------------- | :-------| :--------------------------------- |
+| `Authorization`  | `string`| **Required**. Bearer Authorization |
+
+####
 
 | Query   | Type     | Description                 |
 | :------ | :------- | :-------------------------- |
 | `id`    | `integer`| **Required**. wifi id       |
 
-####
-
-| Headers          | Type    | Description                        |
-| :--------------- | :-------| :--------------------------------- |
-| `Authorization`  | `string`| **Required**. Bearer Authorization | 
 
 #### Response:
 
@@ -438,9 +425,103 @@ DrivenPass is an API that keep records of users.
 ```
 #
 
+
+
+
+### Create a document record
+
+```POST /documents```
+
+#### Request:
+
+| Headers          | Type    | Description                        |
+| :--------------- | :-------| :--------------------------------- |
+| `Authorization`  | `string`| **Required**. Bearer Authorization | 
+
+####
+
+| Body                 |   Type    | Description                                 |
+| :------------------- | :-------- | :------------------------------------------ |
+| `fullName`           | `string`  | **Required**. full name of the owner        |
+| `registerNumber`     | `string`  | **Required**. document register number      |
+| `issueDate`          | `string`  | **Required**. document issue date           |
+| `expirationDate`     | `string`  | **Required**. document expiration date      |
+| `issuingOrganization`| `string`  | **Required**. document issue organization   |
+| `type`               | `string`  | **Required**. document type                 |
+
+`expirationDate length: 10 format(DD/MM/YYYY)`
+`issueDate length: 10 format(DD/MM/YYYY)`
+`Valid types: [RG and CNH ]`
+
+####
+
+</br>
+
+#
+
+### Search documents record / Search document record by id
+
+```GET /documents``` or ```GET /documents?id```
+
+#### Request:
+
+| Headers          | Type    | Description                        |
+| :--------------- | :-------| :--------------------------------- |
+| `Authorization`  | `string`| **Required**. Bearer Authorization | 
+
+| Query   | Type     | Description                 |
+| :------ | :------- | :-------------------------- |
+| `id`    | `integer`| **Optional**. document id   |
+
+#### Response:
+
+```json
+[
+  {
+    "fullName": "...",
+    "registerNumber": "...",
+    "issueDate": "...",
+    "expirationDate": "...",
+    "registerNumber": "...",
+    "issuingOrganization": "...",
+    "type": "..."
+  },
+  ...
+]
+```
+#
+
+### Delete documents record by id
+
+```DELETE /documents?id```
+
+#### Request:
+
+| Headers          | Type    | Description                        |
+| :--------------- | :-------| :--------------------------------- |
+| `Authorization`  | `string`| **Required**. Bearer Authorization |
+
+####
+
+| Query   | Type     | Description                 |
+| :------ | :------- | :-------------------------- |
+| `id`    | `integer`| **Required**. document id   |
+
+
+#### Response:
+
+```json
+  {
+    "message": "Document deleted!"
+  }
+```
+#
+
+
+
 ## Environment Variables
 
-To run this project, you will need to add the following environment variables to your .env file
+This enviroment variables are required to run this project:
 
 `DATABASE_URL = postgres://UserName:Password@Hostname:5432/DatabaseName`
 
@@ -451,20 +532,13 @@ To run this project, you will need to add the following environment variables to
 
 ## Lessons Learned
 
-In this project i've improved my typescript skills and how to work with layered structure, i've learnt the basics of working with prisma to build
-the database and how to make and use tests through thunder-client.
-
-</br>
-
-## Acknowledgements
-
--   [Awesome Badges](https://github.com/Envoy-VC/awesome-badges)
+In this project I could practice and improve my typescrypts skills and for the first time I was able to use prisma to make migration without using SQL Scripts. Other than that, I used Prisma automatic interfaces to create types which helped me to type functions and variables.
 
 </br>
 
 ## Authors
 
--   João Félix is a student at Driven Education and is putting effort into it to become a Dev.
+-   João Félix is a student at Driven Education who is preparing himself to work in a big company.
 <br/>
 
 #
