@@ -101,15 +101,19 @@ DrivenPass is an API that keep records of users.
 
 #
 
-### Search credentials
+### Search credentials / Search credentials by id
 
-```GET /credentials```
+```GET /credentials``` or ```GET /credentials?id```
 
 #### Request:
 
 | Headers          | Type    | Description                        |
 | :--------------- | :-------| :--------------------------------- |
-| `Authorization`  | `string`| **Required**. Bearer Authorization | 
+| `Authorization`  | `string`| **Required**. Bearer Authorization |
+
+| Query   | Type     | Description                 |
+| :------ | :------- | :-------------------------- |
+| `id`    | `integer`| **Optional**. credential id |
 
 #### Response:
 
@@ -128,45 +132,15 @@ DrivenPass is an API that keep records of users.
 ```
 #
 
-### Search credential by id
-
-```GET /credentials/:id```
-
-#### Request:
-
-| Headers          | Type    | Description                        |
-| :--------------- | :-------| :--------------------------------- |
-| `Authorization`  | `string`| **Required**. Bearer Authorization | 
-
-####
-
-| Params  | Type     | Description                 |
-| :------ | :------- | :-------------------------- |
-| `id`    | `integer`| **Required**. credential id |
-
-#### Response:
-
-```json
-  {
-    "id": "...",
-    "userId:":"...",
-    "url": "...",
-    "name": "...",
-    "password": "...",
-    "title": "..."
-  }
-```
-#
-
 ### Delete credential by id
 
-```DELETE credentials/delete/:id```
+```DELETE /credentials?id=```
 
 #### Request:
 
-|    Params    |   Type   | Description                  |
-| :----------  | :--------| :--------------------------- |
-| `id`         | `integer`| **Required**. credential Id  | 
+| Query   | Type     | Description                 |
+| :------ | :------- | :-------------------------- |
+| `id`    | `integer`| **Required**. credential id |
 
 ####
 
@@ -218,15 +192,19 @@ DrivenPass is an API that keep records of users.
 
 #
 
-### Search cards
+### Search cards / Search cards by id
 
-```GET /cards```
+```GET /cards``` or ```GET /cards?id```
 
 #### Request:
 
 | Headers          | Type    | Description                        |
 | :--------------- | :-------| :--------------------------------- |
 | `Authorization`  | `string`| **Required**. Bearer Authorization | 
+
+| Query   | Type     | Description                 |
+| :------ | :------- | :-------------------------- |
+| `id`    | `integer`| **Optional**. card id       |
 
 #### Response:
 
@@ -247,22 +225,6 @@ DrivenPass is an API that keep records of users.
 ```
 #
 
-### Search card by id
-
-```GET /cards/:id```
-
-#### Request:
-
-| Headers          | Type    | Description                        |
-| :--------------- | :-------| :--------------------------------- |
-| `Authorization`  | `string`| **Required**. Bearer Authorization | 
-
-####
-
-| Params  | Type     | Description           |
-| :------ | :------- | :-------------------- |
-| `id`    | `integer`| **Required**. card id |
-
 #### Response:
 
 ```json
@@ -281,13 +243,13 @@ DrivenPass is an API that keep records of users.
 
 ### Delete card by id
 
-```DELETE cards/delete/:id```
+```DELETE cards?id```
 
 #### Request:
 
-|    Params    |   Type   | Description            |
-| :----------  | :--------| :--------------------- |
-| `id`         | `integer`| **Required**. card Id  | 
+| Query   | Type     | Description                 |
+| :------ | :------- | :-------------------------- |
+| `id`    | `integer`| **Required**. credential id |
 
 ####
 
@@ -306,7 +268,7 @@ DrivenPass is an API that keep records of users.
 
 ### Create a note record
 
-```POST /categories/notes/create```
+```POST /notes```
 
 #### Request:
 
@@ -319,11 +281,11 @@ DrivenPass is an API that keep records of users.
 | Body              | Type      | Description                           |
 | :---------------- | :-------- | :------------------------------------ |
 | `title`           | `string`  | **Required**. record title            |
-| `description`     | `string`  | **Required**. safe note description   |
+| `text       `     | `string`  | **Required**.  note text              |
 
 `title max-length: 50`
-`description max-length: 1000`
-`Can't create safe note with same title`
+`text max-length: 1000`
+`Note title already in use!`
 
 ####
 
@@ -338,72 +300,42 @@ DrivenPass is an API that keep records of users.
 ```
 #
 
-### View safe notes
+### Search notes / Search notes by id
 
-```GET /notes```
+```GET /notes``` or ```GET /notes?id```
 
 #### Request:
 
 | Headers          | Type    | Description                        |
 | :--------------- | :-------| :--------------------------------- |
 | `Authorization`  | `string`| **Required**. Bearer Authorization | 
+
+| Query   | Type     | Description                 |
+| :------ | :------- | :-------------------------- |
+| `id`    | `integer`| **Optional**. credential id |
 
 #### Response:
 
 ```json
 [
   {
-    "title": "my safe note",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tristique lectus id arcu pharetra laoreet.
-    Morbi quis ullamcorper ante, sed vulputate felis. Nulla elit ipsum, molestie eu hendrerit vitae, vestibulum quis odio. 
-    Integer facilisis quis neque vitae tristique. 
-    Aenean venenatis, odio id posuere posuere, nibh libero rhoncus eros, 
-    ac pellentesque mi felis sed justo. Phasellus feugiat orci maximus commodo commodo." 
+    "title": "...",
+    "description": "..."
    },
   ...
 ]
 ```
 #
 
-### View safe note by id
+### Delete note by id
 
-```GET /notes/:id```
+```DELETE notes?id```
 
 #### Request:
 
-| Headers          | Type    | Description                        |
-| :--------------- | :-------| :--------------------------------- |
-| `Authorization`  | `string`| **Required**. Bearer Authorization | 
-
-####
-
-| Params  | Type     | Description                 |
+| Query   | Type     | Description                 |
 | :------ | :------- | :-------------------------- |
-| `id`    | `integer`| **Required**. safe note id  |
-
-#### Response:
-
-```json
-  {
-    "title": "my safe note",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tristique lectus id arcu pharetra laoreet.
-    Morbi quis ullamcorper ante, sed vulputate felis. Nulla elit ipsum, molestie eu hendrerit vitae, vestibulum quis odio. 
-    Integer facilisis quis neque vitae tristique. 
-    Aenean venenatis, odio id posuere posuere, nibh libero rhoncus eros, 
-    ac pellentesque mi felis sed justo. Phasellus feugiat orci maximus commodo commodo." 
-   },
-```
-#
-
-### Delete safe note by id
-
-```DELETE notes/delete/:id```
-
-#### Request:
-
-|    Params    |   Type   | Description                  |
-| :----------  | :--------| :--------------------------- |
-| `id`         | `integer`| **Required**. safe note Id   | 
+| `id`    | `integer`| **Required**. note id       |
 
 ####
 
@@ -415,14 +347,14 @@ DrivenPass is an API that keep records of users.
 
 ```json
   {
-    "message": "Safe note removed!"
+    "message": "Note deleted!"
   }
 ```
 #
 
 ### Create a wifi network record
 
-```POST /categories/wifis/create```
+```POST /wifis```
 
 #### Request:
 
@@ -453,9 +385,9 @@ DrivenPass is an API that keep records of users.
 ```
 #
 
-### View wifi networks
+### Search wifi networks / Search wifi networks by id
 
-```GET /wifis```
+```GET /wifis``` or ```GET /wifis?id```
 
 #### Request:
 
@@ -463,44 +395,21 @@ DrivenPass is an API that keep records of users.
 | :--------------- | :-------| :--------------------------------- |
 | `Authorization`  | `string`| **Required**. Bearer Authorization | 
 
+| Query   | Type     | Description                 |
+| :------ | :------- | :-------------------------- |
+| `id`    | `integer`| **Required**. credential id |
+
 #### Response:
 
 ```json
 [
   {
-    "title": "Wifi do Vizinho",
-    "name": "Wifi boa é wifi de graça",
-    "password": "1234"
+    "title": "...",
+    "name": "...",
+    "password": "..."
   },
   ...
 ]
-```
-#
-
-### View wifi network by id
-
-```GET /wifis/:id```
-
-#### Request:
-
-| Headers          | Type    | Description                        |
-| :--------------- | :-------| :--------------------------------- |
-| `Authorization`  | `string`| **Required**. Bearer Authorization | n |
-
-####
-
-| Params  | Type     | Description            |
-| :------ | :------- | :--------------------- |
-| `id`    | `integer`| **Required**. wifi id  |
-
-#### Response:
-
-```json
-  {
-    "title": "Wifi do Vizinho",
-    "name": "Wifi boa é wifi de graça",
-    "password": "1234"
-  }
 ```
 #
 
@@ -510,9 +419,9 @@ DrivenPass is an API that keep records of users.
 
 #### Request:
 
-|    Params    |   Type   | Description             |
-| :----------  | :--------| :---------------------- |
-| `id`         | `integer`| **Required**. wifi Id   | 
+| Query   | Type     | Description                 |
+| :------ | :------- | :-------------------------- |
+| `id`    | `integer`| **Required**. wifi id       |
 
 ####
 
@@ -524,7 +433,7 @@ DrivenPass is an API that keep records of users.
 
 ```json
   {
-    "message": "Wifi record removed!"
+    "message": "Wifi deleted!"
   }
 ```
 #
